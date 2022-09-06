@@ -459,6 +459,13 @@ class ORM:
                 except IndexError:
                     pass
                 try:
+                    if section == 'evaluate':
+                        if ''.join(line[1:]).replace('+', '').replace('-', '').replace('*', '').replace('/', '').isdigit():
+                            values.append(eval(' '.join(line[1:])))
+                        break
+                except IndexError:
+                    pass
+                try:
                     if section == 'clear':
                         self.__db.clear()
                         break
